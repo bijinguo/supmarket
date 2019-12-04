@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+	"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<!-- namespace：当前XML文件用于配置哪个接口中抽象方法对应的SQL语句 -->
+<mapper namespace="com.bi.supmarket.mapper.OrderMapper">
+
+
+	<insert id="saveOrder" useGeneratedKeys="true" keyProperty="id">
+
+		insert into t_order(
+		uid,recv_name,recv_phone,recv_province,recv_city,recv_area,recv_address,status,
+		price,order_time,
+			pay_time,
+			created_user, created_time,
+			modified_user, modified_time
+		) values (
+
+	#{uid},#{recvName},
+			#{recvPhone},#{recvProvince},
+			#{recvCity},#{recvArea},
+			#{recvAddress},#{status},
+			#{price},#{orderTime},
+			#{payTime},
+			#{createdUser}, #{createdTime},
+			#{modifiedUser}, #{modifiedTime}
+
+		)
+	</insert>
+	<insert id="saveOrderItem" useGeneratedKeys="true" keyProperty="id">
+
+INSERT INTO
+			t_order_item(
+			oid,pid,
+			num,price,
+			image,title,
+			created_user, created_time,
+			modified_user, modified_time
+			)
+		VALUES(
+			#{oid},#{pid},
+			#{num},#{price},
+			#{image},#{title},
+			#{createdUser}, #{createdTime},
+			#{modifiedUser}, #{modifiedTime}
+		)
+
+
+	</insert>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</mapper>
+
+
+
+
+
+

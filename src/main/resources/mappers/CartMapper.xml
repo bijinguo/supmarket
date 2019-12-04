@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+	"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<!-- namespace：当前XML文件用于配置哪个接口中抽象方法对应的SQL语句 -->
+<mapper namespace="com.bi.supmarket.mapper.CartMapper">
+	<resultMap id="CartEntityMap" type="com.bi.supmarket.entity.Cart">
+		<id column="cid" property="cid"/>
+		<result column="pid" property="pid"/>
+		<result column="uid" property="uid" />
+		<result column="price" property="price" />
+		<result column="num" property="num" />
+		<result column="created_user" property="createdUser" />
+		<result column="created_time" property="createdTime" />
+		<result column="modified_user" property="modifiedUser" />
+		<result column="modified_time" property="modifiedTime" />
+	</resultMap>
+
+<!--	Integer deleteByCid(Integer cid);//根据cid删除购物车的一条记录-->
+
+	<delete id="deleteByCid">
+
+		delete from  t_cart where cid=#{cid}
+	</delete>
+
+
+
+	<insert id="saveCart" useGeneratedKeys="true" keyProperty="cid">
+
+
+		insert into t_cart (
+		uid,pid,price,num,
+		created_user, created_time,
+		modified_user, modified_time
+
+		)values (
+				#{uid}, #{pid},
+				#{price}, #{num},
+				#{createdUser}, #{createdTime},
+				#{modifiedUser}, #{modifiedTime}
+		)
+	</insert>
+	<select id="getByUidAndPid" resultMap="CartEntityMap">
+
+		select * from t_cart
+		where uid=#{uid} and pid=#{pid}
+
+	</select>
+	<select id="findBycid" resultMap="CartEntityMap">
+
+		select * from t_cart where cid=#{cid}
+
+	</select>
+	<update id="changeNum">
+
+		update t_cart set num=#{num},
+		 modified_user=#{username},
+			modified_time=#{modifiedTime}
+
+
+		 where cid=#{cid}
+
+
+	</update>
+
+
+<!--	将购物车列表中所需展示的数据从数据库中查询出来：
+查哪些列，查那张表，限定条件，分组，排序
+
+-->
+
+	<select id="findCartList" resultType="com.bi.supmarket.vo.CartVo">
+		select f1.cid,f1.pid,f1.uid,
+		f2.image,f2.title,f2.price as realPrice,f1.price,f1.num
+
+		from t_cart f1 left join t_product f2 on f1.pid=f2.id
+		 where f1.uid=#{uid}
+		order by f1.modified_time desc
+	</select>
+	<select id="getById" resultMap="CartEntityMap">
+		select  *from t_cart where cid=#{cid}
+	</select>
+<!--	List<CartVo> findByCids(Integer[] cids);-->
+<select id="findByCids" resultType="com.bi.supmarket.vo.CartVo">
+
+	select t1.cid,t1.pid,p1.image,p1.title,
+	p1.price as realPrice,t1.price,t1.num,t1.uid
+	 from t_cart t1 left join t_product p1 on t1.pid=p1.id
+	where t1.cid in
+	<foreach collection="array" item="cid" separator="," open="(" close=")">
+		#{cid}
+	</foreach>
+	order by t1.modified_time desc
+
+</select>
+
+
+
+
+</mapper>
+
+
+
+
+
+

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+	"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<!-- namespace：当前XML文件用于配置哪个接口中抽象方法对应的SQL语句 -->
+<mapper namespace="com.bi.supmarket.mapper.ProductMapper">
+
+<!--	&lt;!&ndash; 新增收货地址 &ndash;&gt;-->
+<!--	&lt;!&ndash; Integer saveAddress(Address address) &ndash;&gt;-->
+<!--&lt;!&ndash;	List<District> findByParent(String parent);&ndash;&gt;-->
+
+
+<!--&lt;!&ndash;	/*&ndash;&gt;-->
+<!--&lt;!&ndash;	* 根据地区编号查区域*/&ndash;&gt;-->
+<!--&lt;!&ndash;	District findByCode(String code);&ndash;&gt;-->
+<!--	<select id="findByParent" resultType="com.bi.supmarket.entity.District">-->
+<!--		select id,parent,code,name from t_dict_district where parent=#{parent}-->
+
+
+
+<!--	</select>-->
+
+<!--	<select id="findByCode" resultType="com.bi.supmarket.entity.District">-->
+<!--		-->
+<!--		select id,parent,code,name from t_dict_district where code=#{code}-->
+
+
+
+
+
+<!--	</select>-->
+
+
+	<resultMap id="prodMap" type="com.bi.supmarket.entity.Product">
+		<id column="id" property="id"/>
+		<result column="category_id" property="categoryId"/>
+		<result column="item_type" property="itemType"/>
+		<result column="title" property="title"/>
+		<result column="sell_point" property="sellPoint"/>
+		<result column="price" property="price"/>
+		<result column="num" property="num"/>
+		<result column="image" property="image"/>
+		<result column="status" property="status"/>
+		<result column="priority" property="priority"/>
+		<result column="created_time" property="createdTime"/>
+		<result column="modified_time" property="modifiedTime"/>
+		<result column="created_user" property="createdUser"/>
+		<result column="modified_user" property="modifiedUser"/>
+
+
+	</resultMap>
+
+	<select id="findByPriority" resultMap="prodMap">
+		select *from t_product where status=1 and num>0 order by priority desc limit 0,4
+
+	</select>
+
+
+<select id="findById" resultMap="prodMap">
+	select* from t_product where id=#{id}
+</select>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</mapper>
+
+
+
+
+
+

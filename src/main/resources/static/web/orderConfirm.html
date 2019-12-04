@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <!--360浏览器H5兼容设置-->
+    <meta content="webkit" name="renderer"/>
+    <title>欢迎来到购物车管理页面</title>
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <!--导入核心文件-->
+    <script src="../bootstrap3/js/holder.js"></script>
+    <link href="../bootstrap3/css/bootstrap.css" rel="stylesheet" type="text/css">
+    <script src="../bootstrap3/jquery-1.8.3.min.js"></script>
+    <script src="../bootstrap3/js/bootstrap.js"></script>
+    <!-- 字体图标 -->
+    <link href="../bootstrap3/font-awesome-4.7.0/css/font-awesome.css" rel="stylesheet"/>
+    <link href="../css/layout.css" rel="stylesheet" type="text/css"/>
+    <link href="../css/cart.css" rel="stylesheet" type="text/css"/>
+    <link href="../css/footer.css" rel="stylesheet" type="text/css"/>
+    <link href="../css/top.css" rel="stylesheet" type="text/css"/>
+    <script charset="utf-8" src="../js/cart.js" type="text/javascript"></script>
+
+</head>
+<body>
+<header class="header">
+    <div class="row">
+        <div class="col-3">
+            <a href="index.html">
+                <img alt="LOGO" src="../images/index/logo.jpg">
+            </a>
+        </div>
+        <div class="col-9 top-item">
+            <ul class="list-inline pull-right">
+                <li><a href="favorites.hmtl"><span class="fa fa-heart"></span>&nbsp;收藏</a></li>
+                <li class="li-split">|</li>
+                <li><a href="order.html"><span class="fa fa-file-text"></span>&nbsp;订单</a></li>
+                <li class="li-split">|</li>
+                <li><a href="cart.html"><span class="fa fa-cart-plus"></span>&nbsp;购物车</a></li>
+                <li class="li-split">|</li>
+                <li>
+                    <div class="btn-group">
+
+                        <button class="btn btn-link dropdown-toggle" data-toggle="dropdown" type="button">
+                            <span id="top-dropdown-btn"><span class="fa fa-gears"></span>&nbsp;管理<span
+                                    class="caret"></span></span>
+                        </button>
+                        <ul class="dropdown-menu top-dropdown-ul" role="menu">
+                            <li><a href="password.html">修改密码</a></li>
+                            <li><a href="userdata.html">个人资料</a></li>
+                            <li><a href="upload.html">上传头像</a></li>
+                            <li><a href="address.html">收货管理 </a></li>
+                        </ul>
+                    </div>
+
+                </li>
+                <li class="li-split">|</li>
+
+
+                <li><a href="login.html"><span class="fa fa-user"></span>&nbsp;登录</a></li>
+            </ul>
+
+
+        </div>
+    </div>
+
+</header>
+<div class="row top-nav">
+
+    <div class="col-md-6">
+        <ul class="nav nav-pills">
+            <!--            <li><a href="#"></a></li>-->
+            <li class="active"><a href=""><span class="fa fa-home"></span></a></li>
+            <li><a href="#">秒杀</a></li>
+            <li><a href="#">优惠券</a></li>
+            <li><a href="#">VIP</a></li>
+            <li><a href="#">外卖</a></li>
+            <li><a href="#">超市</a></li>
+        </ul>
+    </div>
+    <div class="col-md-6">
+        <form action="search.html" class="form-inline pull-right" role="form">
+            <input class="form-control" id="search" name="search" placeholder="请输入商品名称进行搜索" type="text">
+            <button class=" btn btn-default btn-sm fa fa-search" type="submit"></button>
+        </form>
+    </div>
+
+
+</div>
+<div class="container">
+<div class="col-md-offset-1 col-md-10">
+    <div class="col-md-4">
+        <div class="col-md-12 order-bar-active">
+            1,确认订单信息
+            <span class="pull-right"><span class="fa fa-chevron-right"></span></span></div>
+    </div>
+    <div class="col-md-4">
+        <div class="col-md-12 order-bar-undo ">
+            2,在线支付
+            <span class="pull-right order-bar-undo"><span class="fa fa-chevron-right"></span></span></div>
+    </div>
+    <div class="col-md-4">
+        <div class="col-md-12 ">
+            3,付款成功
+            </div>
+    </div>
+    <div class="col-md-12">
+        <form role="form" >
+            <div class="form-group">
+                <label ><p>选择收货地址</p></label>
+                <select class="form-control" id="address-list">
+                    <option>八戒&nbsp;&nbsp;&nbsp;家&nbsp;&nbsp;&nbsp;北京市房山区高老庄3排6号&nbsp;&nbsp;&nbsp;1380***1234</option>
+                    <option value=""></option>
+                    <option value=""></option>
+                </select>
+            </div>
+            <div class="panel panel-primary">
+                <div class="panel-heading"><p class="panel-title">确认订单商品信息</p></div>
+                <div class="panel-body">
+                    <table CLASS="cart-table" width="100%">
+                        <thead>
+                        <tr>
+                            <th width="15%"></th>
+                            <th width="35%">商品</th>
+                            <th width="15%">单价</th>
+                            <th width="15%">数量</th>
+                            <th width="20%">金额</th>
+                        </tr>
+                        </thead>
+                        <tbody class="cart-body" id="cart-show">
+                        <tr>
+                            <td><img src="" alt=""></td>
+                            <td>联想(Lenovo)小新Air13 Pro 13.3英寸14.8mm超轻薄笔记本电脑<</td>
+                            <td><span>￥</span>5296</td>
+                            <td>1</td>
+                            <td>5296</td>
+                        </tr>
+
+
+                        </tbody>
+                    </table>
+                    <div class="total-bar">已选商品
+                    <span id="selectCount">1</span>件 总价￥
+                        <span id="selectTotal">5296</span>元
+                    </div>
+                </div>
+            </div>
+            <div class="pay-bar">
+                <a href="cart.html">返回购物车</a>
+                <span class="pull-right">
+
+                    <input type="button" onclick="href='payment.html'" class="btn btn-primary btn-lg link-pay" value="在线支付">
+                </span>
+            </div>
+
+        </form>
+    </div>
+
+</div>
+
+
+
+</div>
+<div class="clearfix"></div>
+<footer class="footer">
+    <div class="text-center rights container">
+        <div class="col-md-2"><span></span>
+            <p>品质保障</p>
+        </div>
+        <div class="col-md-2"><span></span>
+            <p>私人定制</p>
+        </div>
+        <div class="col-md-2"><span></span>
+            <p>VIP服务</p>
+        </div>
+        <div class="col-md-2"><span></span>
+            <p>想你所想，懂你所懂</p>
+        </div>
+
+    </div>
+    <div class="container beforeBottom">
+        <div class="col-md-4 callus text-center">
+            <div class="col-md-4">
+                <ul>
+                    <li><a href="#"><p>买家服务</p></a></li>
+                    <li>新手指南</li>
+                    <li>服务保障</li>
+                    <li>常见问题</li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <ul>
+                    <li><a href="#"><p>商家帮助</p></a></li>
+                    <li>商家入驻</li>
+                    <li>商家后台</li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <ul>
+                    <li><a href="www.baidu.com"> 关于金国科技集团</a></li>
+                    <li><a href="www.taobao.com">联系我们</a></li>
+                    <li>
+                        <span class="fa fa-wechat"></span>
+                        <span class="fa fa-weibo"></span>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+        <div class="col-md-4">
+            <div class="col-md-5">
+                <p>商城客户端</p>
+                <img class="lf" src="../images/index/ios.png">
+                <img alt="" class="lf" src="../images/index/android.png"/>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="col-md-12 text-center bottom">
+        金国科技独家提供<b>版权所有，侵权必究！</b>
+    </div>
+</footer>
+<script type="text/javascript">
+
+    $(
+        function () {
+            showAddress();
+            showCartAll();
+
+        }
+    );
+
+
+    function showAddress() {
+
+        $("#address-list").empty();
+
+        $.ajax({
+            'url': '/address/list',
+            'type': 'get',
+            'dataType': 'json',
+            'success': function (json) {
+                // <option>八戒&nbsp;&nbsp;&nbsp;家&nbsp;&nbsp;&nbsp;北京市房山区高老庄3排6号&nbsp;&nbsp;&nbsp;1380***1234</option>
+
+                if (json.state == 20) {
+                    // CartVo(cid=9, pid=10000042, image=/images/portal/21ThinkPad_New_S1/, title=联想ThinkPad New S1（01CD） i5 6代 红色, realPrice=4399, price=4399, num=10)
+                    var data = json.data;
+                    for (var i = 0; i < data.length; i++) {
+
+                        var option ='<option>#{name}&nbsp;&nbsp;&nbsp;#{tag}&nbsp;&nbsp;&nbsp;#{province}#{city}#{area}#{address}&nbsp;&nbsp;&nbsp;#{phone}</option>' ;
+
+                        option=option.replace("#{tag}",data[i].tag);
+                        option=option.replace("#{name}",data[i].name);
+                        option=option.replace("#{province}",data[i].provinceName);
+                        option=option.replace("#{city}",data[i].cityName);
+                        option=option.replace("#{area}",data[i].areaName);
+                        option=option.replace("#{address}",data[i].address);
+                        option=option.replace("#{phone}",data[i].phone);
+                        // replace默认仅遇到的第一个对应字符串
+                        // 可以使用正则表达式，让replace替换所有对应字符串
+                        // option=option.replace(/#{aid}/g,data[i].aid);
+
+                        $("#address-list").append(option);
+
+                    }
+
+
+                } else {
+                    alert(json.message);
+                }
+
+
+            }
+
+
+        })
+
+
+    }
+
+
+//select*from t_car left join t_product
+//     on t_cart.pid=t_product.id where cid in[?,?,?]
+    function showCartAll() {
+        $("#cart-show").empty();
+        $.ajax({
+            'url': '/cart/showAll/getCids',
+            'data':location.search.substr(1),
+            'type': 'get',
+            'dataType': 'json',
+            'success': function (json) {
+                console.log(location.search.substr(1));
+
+                     var data = json.data;
+                var selectCount=0;// 总数
+                var selectTotal=0;// 总价
+                    for (var i = 0; i < data.length; i++) {
+                      selectCount+=  data[i].num;
+                      selectTotal+=(data[i].num*data[i].realPrice);
+
+                        var tr =' <tr>' +
+                            '<td><img src="..#{image}collect.png" class="img-responsive"></td>' +
+                            '<td>#{title}<</td>' +
+                            '<td><span>￥</span>#{realPrice}</td>' +
+                            '<td>#{num}</td>' +
+                            '<td>#{totalPrice}</td>' +
+                            '</tr>' ;
+
+                        tr = tr.replace('#{image}', data[i].image);
+                        tr = tr.replace('#{title}', data[i].title);
+                        tr = tr.replace('#{realPrice}', data[i].realPrice);
+                        tr = tr.replace('#{num}', data[i].num);
+                        var totalPrice = (data[i].realPrice) * (data[i].num);
+                        tr = tr.replace("#{totalPrice}", totalPrice);
+                        tr = tr.replace(/#{cid}/g, data[i].cid);
+
+
+
+                        $("#cart-show").append(tr);
+
+                    }
+
+                    $("#selectCount").html(selectCount);
+                    $("#selectTotal").text(selectTotal);
+
+
+
+            }
+
+
+        })
+
+    }
+
+</script>
+
+
+
+
+</body>
+</html>
